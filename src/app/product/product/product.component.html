@@ -1,0 +1,9 @@
+<div class="main-content">
+    <div class="form-inline">
+        <button mat-button color="primary" class="btn btn-primary btn-sm" (click)="toggleProduct()">{{ btnDisplay }}</button>
+    </div>
+    <product-add *ngIf="showlist;else hidelist"></product-add>
+    <ng-template #hidelist>
+        <product-list></product-list>
+   </ng-template>
+</div>

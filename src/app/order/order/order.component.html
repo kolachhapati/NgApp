@@ -1,0 +1,87 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Product</h4>
+                        <p class="card-category">Register Your Product</p>
+                    </div>
+                    <div class="card-body">
+                        <mat-horizontal-stepper linear #stepper>
+                            <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+                                <form [formGroup]="firstFormGroup">
+                                    <ng-template matStepLabel>Create Order</ng-template>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <mat-form-field>
+                                                    <mat-label>Product</mat-label>
+                                                    <input matInput formControlName="selectedProduct"
+                                                        placeholder="Quantity" required>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <mat-form-field>
+                                                    <mat-label>Quantity</mat-label>
+                                                    <input matInput formControlName="Qty" placeholder="Quantity"
+                                                        type="number" required>
+                                                </mat-form-field>
+                                            </div>
+                                            &nbsp;
+                                            <button mat-button color="primary" type="button" class="btn-primary btn-sm"
+                                                (click)="saveOrder()">Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" [hidden]='!showOrders'>
+                                        <table class="table table-striped table-bordered">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col">Product</th>
+                                                    <th scope="col">Quantity</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td> {{ selectedProduct  }}</td>
+                                                    <td> {{ Qty  }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div>
+                                        <button mat-button matStepperNext>Next</button>
+                                    </div>
+                                </form>
+                            </mat-step>
+                            <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+                                <form [formGroup]="secondFormGroup">
+                                    <ng-template matStepLabel>Fill out your address</ng-template>
+                                    <mat-form-field>
+                                        <mat-label>Address</mat-label>
+                                        <input matInput formControlName="secondCtrl"
+                                            placeholder="Ex. 1 Main St, New York, NY" required>
+                                    </mat-form-field>
+                                    <div>
+                                        <button mat-button matStepperPrevious>Back</button>
+                                        <button mat-button matStepperNext>Next</button>
+                                    </div>
+                                </form>
+                            </mat-step>
+                            <mat-step>
+                                <ng-template matStepLabel>Done</ng-template>
+                                <p>You are now done.</p>
+                                <div>
+                                    <button mat-button matStepperPrevious>Back</button>
+                                    <button mat-button (click)="stepper.reset()">Reset</button>
+                                </div>
+                            </mat-step>
+                        </mat-horizontal-stepper>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
