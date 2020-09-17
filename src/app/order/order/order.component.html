@@ -17,8 +17,14 @@
                                             <div class="col-sm-3">
                                                 <mat-form-field>
                                                     <mat-label>Product</mat-label>
-                                                    <input matInput formControlName="selectedProduct"
-                                                        placeholder="Quantity" required>
+                                                    <mat-select formControlName="selectedProduct" required>
+                                                        <mat-option *ngFor="let product of products"
+                                                            [value]="product.productId">
+                                                            {{ product.name }}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                    <!-- <input matInput formControlName="selectedProduct" type="number"
+                                                        placeholder="Quantity" required> -->
                                                 </mat-form-field>
                                             </div>
                                             <div class="col-sm-3">
@@ -34,18 +40,23 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="card-body" [hidden]='!showOrders'>
+                                    <div class="card-body" *ngIf="orderlist">
                                         <table class="table table-striped table-bordered">
                                             <thead class="thead-light">
                                                 <tr>
-                                                    <th scope="col">Product</th>
-                                                    <th scope="col">Quantity</th>
+                                                    <th scope="col" *ngFor="let header of headerlist">{{ header }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <tr *ngFor="let order of orderlist">
+                                                    <td> {{ order.productName  }}</td>
+                                                    <td> {{ order.quantity  }}</td>
+                                                    <td> {{ order.price  }}</td>
+                                                    <td> {{ order.amount  }}</td>
+                                                </tr>
                                                 <tr>
-                                                    <td> {{ selectedProduct  }}</td>
-                                                    <td> {{ Qty  }}</td>
+                                                    <td colspan="3">Grand Total (TAX not included)</td>
+                                                    <td> {{ grandTotal  }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -57,17 +68,38 @@
                             </mat-step>
                             <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
                                 <form [formGroup]="secondFormGroup">
-                                    <ng-template matStepLabel>Fill out your address</ng-template>
+                                    <ng-template matStepLabel>Check out</ng-template>
                                     <mat-form-field>
-                                        <mat-label>Address</mat-label>
+                                        <mat-label>Customer Details</mat-label>
                                         <input matInput formControlName="secondCtrl"
-                                            placeholder="Ex. 1 Main St, New York, NY" required>
+                                            placeholder="Customer contact number" required>
                                     </mat-form-field>
                                     <div>
                                         <button mat-button matStepperPrevious>Back</button>
                                         <button mat-button matStepperNext>Next</button>
                                     </div>
                                 </form>
+                                <div class="card-body" *ngIf="orderlist">
+                                    <table class="table table-striped table-bordered">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" *ngFor="let header of headerlist">{{ header }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let order of orderlist">
+                                                <td> {{ order.productName  }}</td>
+                                                <td> {{ order.quantity  }}</td>
+                                                <td> {{ order.price  }}</td>
+                                                <td> {{ order.amount  }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">Grand Total (TAX not included)</td>
+                                                <td> {{ grandTotal  }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </mat-step>
                             <mat-step>
                                 <ng-template matStepLabel>Done</ng-template>

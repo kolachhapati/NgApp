@@ -2,11 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IProductModel } from 'app/product/product.model';
 import { Observable } from 'rxjs';
+import { IOrderModel } from 'app/order/order.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+  saveOrder(orderData: IOrderModel) {
+    return this.http.post('https://localhost:44312/api/Order/Create' , orderData);
+  }
   
   serverUrl :string = 'https://localhost:44312/api'
   constructor(private http: HttpClient) {
@@ -17,7 +21,7 @@ export class ApiService {
      return this.http.post('https://localhost:44312/api/Product/Create' , productData);
   }
 
-  getProducts() :Observable<IProductModel[]> {
+  getProducts() :Observable<any> {
      return this.http.get<IProductModel[]>('https://localhost:44312/api/Product/Get');
   }
 
