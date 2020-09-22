@@ -4,25 +4,29 @@ import { IProductModel } from 'app/product/product.model';
 import { Observable } from 'rxjs';
 import { IOrderModel } from 'app/order/order.model';
 
+const serverUrl:string = 'https://localhost:44396/'
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+  
   saveOrder(orderData: IOrderModel) {
-    return this.http.post('https://localhost:44312/api/Order/Create' , orderData);
+    return this.http.post(serverUrl + 'api/Order/Create' , orderData);
   }
   
-  serverUrl :string = 'https://localhost:44312/api'
+  
   constructor(private http: HttpClient) {
     
    }
 
   registerProduct(productData: IProductModel) {
-     return this.http.post('https://localhost:44312/api/Product/Create' , productData);
+     return this.http.post(serverUrl + 'api/Product/Create' , productData);
   }
 
   getProducts() :Observable<any> {
-     return this.http.get<IProductModel[]>('https://localhost:44312/api/Product/Get');
+     return this.http.get<IProductModel[]>(serverUrl +'api/Product/Get');
   }
 
   // getLocation(id: any): Observable<LocationModel> {

@@ -60,6 +60,7 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+
                                     </div>
                                     <div>
                                         <button mat-button matStepperNext>Next</button>
@@ -69,37 +70,68 @@
                             <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
                                 <form [formGroup]="secondFormGroup">
                                     <ng-template matStepLabel>Check out</ng-template>
-                                    <mat-form-field>
-                                        <mat-label>Customer Details</mat-label>
-                                        <input matInput formControlName="secondCtrl"
-                                            placeholder="Customer contact number" required>
-                                    </mat-form-field>
+                                    <mat-label>Customer Details</mat-label>
+                                    <div class="card-body row">
+                                        <div class="col-md-4">
+                                            <mat-form-field>
+                                                <input matInput formControlName="phnnumber"
+                                                    placeholder="Customer contact number">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <mat-form-field>
+                                                <mat-label>Customer Name</mat-label>
+                                                <input matInput formControlName="custname" placeholder="Customer Name">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <mat-form-field>
+                                                <mat-label>Customer Email</mat-label>
+                                                <input matInput formControlName="custemail"
+                                                    placeholder="Customer Email">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-md-4">
+                                            <button mat-raised-button color="primary" type="button"
+                                                class="btn-primary btn-sm" (click)="completeOrder()">Confirm Order
+                                            </button>
+                                            &nbsp;
+                                            <button mat-raised-button color="warn" type="button"
+                                                class="btn-danger btn-sm" (click)="cancelOrder()">Cancel Order
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" *ngIf="orderlist">
+                                        <table class="table table-striped table-bordered">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col" *ngFor="let header of headerlist">{{ header }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let order of orderlist">
+                                                    <td> {{ order.productName  }}</td>
+                                                    <td> {{ order.quantity  }}</td>
+                                                    <td> {{ order.price  }}</td>
+                                                    <td> {{ order.amount  }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3">Grand Total (TAX not included)</td>
+                                                    <td> {{ grandTotal  }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <button mat-raised-button color="primary" type="button"
+                                        class="btn-primary btn-sm" (click)="completeOrder()">Print Invoice
+                                    </button>
+                                    </div>
                                     <div>
                                         <button mat-button matStepperPrevious>Back</button>
                                         <button mat-button matStepperNext>Next</button>
                                     </div>
                                 </form>
-                                <div class="card-body" *ngIf="orderlist">
-                                    <table class="table table-striped table-bordered">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col" *ngFor="let header of headerlist">{{ header }}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let order of orderlist">
-                                                <td> {{ order.productName  }}</td>
-                                                <td> {{ order.quantity  }}</td>
-                                                <td> {{ order.price  }}</td>
-                                                <td> {{ order.amount  }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="3">Grand Total (TAX not included)</td>
-                                                <td> {{ grandTotal  }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
                             </mat-step>
                             <mat-step>
                                 <ng-template matStepLabel>Done</ng-template>

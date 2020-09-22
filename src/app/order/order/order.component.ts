@@ -43,14 +43,16 @@ export class OrderComponent implements OnInit {
       Qty: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      phnnumber: ['', Validators.required],
+      custname: ['', Validators.required],
+      custemail: ['', Validators.required]
     });
     this.getproducts();
   }
  
   getproducts() {
     this.apiService.getProducts().subscribe(data => {
-      this.products = data['products'];
+      this.products = data;
     })
   }
 
@@ -72,5 +74,14 @@ export class OrderComponent implements OnInit {
   }
 
 
+  completeOrder(){
+    this.orderGroupId = null;
+    this.orderlist= null;
+  }
+  
+  cancelOrder(){
+    this.orderGroupId = null;
+    this.orderlist= null;
+  }
 
 }

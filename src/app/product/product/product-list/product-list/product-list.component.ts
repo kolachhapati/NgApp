@@ -23,11 +23,9 @@ export class ProductListComponent implements OnInit{
 
   ngOnInit(): void {
     this.apiService.getProducts().subscribe(result => {
-       this.dataSource = new MatTableDataSource(result['products']);
+       this.dataSource = new MatTableDataSource(result);
        this.dataSource.sort = this.sort;
        this.dataSource.paginator = this.paginator;
-
-       console.log(this.dataSource);
     });
   }
 
