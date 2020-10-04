@@ -10,6 +10,7 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { ProductComponent } from 'app/product/product/product.component';
 import { OrderComponent } from 'app/order/order/order.component';
+import { ProdcatComponent } from 'app/product/productcategory/prodcat/prodcat.component';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -22,5 +23,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'notifications',  component: NotificationsComponent },
     { path: 'upgrade',        component: UpgradeComponent },
     { path: 'product',        component: ProductComponent },
-    { path: 'order',        component: OrderComponent },
+    { path: 'order',          component: OrderComponent },
+    { path: 'productcat',     component: ProdcatComponent },
 ];
