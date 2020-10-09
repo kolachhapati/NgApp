@@ -1,0 +1,29 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Product Category</h4>
+                        <p class="card-category">Add Categories for Your Products</p>
+                    </div>
+                    <div class="card-body">
+                        <form #productcatForm="ngForm" (ngSubmit)="saveCategory(productcatForm)" autocomplete="off">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Product Category" [(ngModel)]="productCat.name"
+                                            name="prodcatName" #pcatname="ngModel">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" class="btn btn-danger pull-right">Update
+                            </button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

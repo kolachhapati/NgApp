@@ -5,3 +5,9 @@ export interface IProductModel{
 	Description : string
     // Status : boolean
 }
+
+
+export interface IProductCategoryModel{
+	ProductCategoryId: number
+	Name  : string
+}

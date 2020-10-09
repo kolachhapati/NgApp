@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IProductModel } from 'app/product/product.model';
+import { IProductCategoryModel, IProductModel } from 'app/product/product.model';
 import { Observable } from 'rxjs';
 import { IOrderModel, ISalesModel } from 'app/order/order.model';
 
@@ -11,6 +11,7 @@ const serverUrl:string = 'https://localhost:44396/'
   providedIn: 'root'
 })
 export class ApiService {
+ 
   
   
   constructor(private http: HttpClient) {
@@ -31,6 +32,10 @@ export class ApiService {
 
   getProducts() :Observable<any> {
      return this.http.get<IProductModel[]>(serverUrl +'api/Product/Get');
+  }
+
+  registerCategory(productCat:IProductCategoryModel) {
+    return this.http.post(serverUrl + 'api/Product/CreateProdCat' , productCat);
   }
 
   // getLocation(id: any): Observable<LocationModel> {
