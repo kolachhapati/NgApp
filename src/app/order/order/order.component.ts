@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from 'app/shared/api.service';
-import { IOrderModel } from '../order.model';
+import { IOrderModel, ISalesModel } from '../order.model';
 import { Observable } from 'rxjs';
 import { IProductModel } from 'app/product/product.model';
 
@@ -14,12 +14,14 @@ export class OrderComponent implements OnInit {
   orderlist: any;
   products: any = [];
   orders: IOrderModel;
+  sales : ISalesModel;
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   orderGroupId: any = null;
   grandTotal;
   Qty: number;
+  showButton:boolean = true;
   selectedProduct: number;
   showOrders: boolean = false;
   isEditable = true;
@@ -27,17 +29,10 @@ export class OrderComponent implements OnInit {
 
 
   constructor(private _formBuilder: FormBuilder, private apiService: ApiService) {
-    this.orders = {
-      ProductId: null,
-      OrderGroup: null,
-      Quantity: null,
-      OrderId: null
-    }
+    this.initializeEntity();
   }
 
   ngOnInit() {
-
-
     this.firstFormGroup = this._formBuilder.group({
       selectedProduct: ['', Validators.required],
       Qty: ['', Validators.required]
@@ -63,7 +58,7 @@ export class OrderComponent implements OnInit {
 
     this.orders.ProductId = this.selectedProduct;
     this.orders.Quantity = this.Qty;
-    this.orders.OrderId = 0;
+     this.orders.OrderId = 0;
     this.orders.OrderGroup = this.orderGroupId;
 
     return this.apiService.saveOrder(this.orders).subscribe((res: any) => {
@@ -75,13 +70,42 @@ export class OrderComponent implements OnInit {
 
 
   completeOrder(){
-    this.orderGroupId = null;
-    this.orderlist= null;
+    this.sales.Email =  this.secondFormGroup.controls['custemail'].value;
+    this.sales.Name =  this.secondFormGroup.controls['custname'].value;
+    this.sales.PhoneNumber =  this.secondFormGroup.controls['phnnumber'].value;
+    this.sales.OrderGroup = this.orderGroupId;
+    this.sales.Total = this.grandTotal;
+
+    return this.apiService.completeOrder(this.sales).subscribe((res:any) => {
+      // this.orderGroupId = null;
+      // this.orderlist= null;
+      this.showButton = false;
+      alert("Sales is confirmed");
+    });
+    
+   
   }
-  
+
   cancelOrder(){
     this.orderGroupId = null;
     this.orderlist= null;
+  }
+
+  initializeEntity(){
+    this.orders = {
+      ProductId: null,
+      OrderGroup: null,
+      Quantity: null,
+      OrderId: null
+    }
+
+    this.sales = {
+      OrderGroup:null,
+      Total : null,
+      Name : null,
+      Email : null,
+      PhoneNumber: null
+    }
   }
 
 }

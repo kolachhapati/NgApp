@@ -4,3 +4,10 @@ export interface IOrderModel{
     ProductId : number
     Quantity : number
 }
+export interface ISalesModel{
+    Name        : string
+    PhoneNumber : string
+    Email : string
+    OrderGroup : string
+    Total : number
+}

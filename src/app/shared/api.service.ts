@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IProductModel } from 'app/product/product.model';
 import { Observable } from 'rxjs';
-import { IOrderModel } from 'app/order/order.model';
+import { IOrderModel, ISalesModel } from 'app/order/order.model';
 
 const serverUrl:string = 'https://localhost:44396/'
 
@@ -12,17 +12,21 @@ const serverUrl:string = 'https://localhost:44396/'
 })
 export class ApiService {
   
-  saveOrder(orderData: IOrderModel) {
-    return this.http.post(serverUrl + 'api/Order/Create' , orderData);
-  }
-  
   
   constructor(private http: HttpClient) {
     
    }
 
+   saveOrder(orderData: IOrderModel) {
+    return this.http.post(serverUrl + 'api/Order/Create' , orderData);
+  }
+
   registerProduct(productData: IProductModel) {
      return this.http.post(serverUrl + 'api/Product/Create' , productData);
+  }
+
+  completeOrder(salesData: ISalesModel) {
+    return this.http.post(serverUrl + 'api/Order/Complete' , salesData);
   }
 
   getProducts() :Observable<any> {
