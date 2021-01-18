@@ -9,24 +9,19 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./product-add.component.css']
 })
 export class ProductAddComponent implements OnInit {
-
-
   categories;
-
-  constructor(private apiService: ApiService) {
+  productcat: any = [];
+  selectedproductcat;
+  constructor(private apiService:ApiService) { 
     this.initializeForm();
   }
 
   product: IProductModel
 
   ngOnInit(): void {
-    this.getCategories();
+    this.getproductCategory();
   }
-
-  getCategories() {
-    this.apiService.getCategories().subscribe(data =>  this.categories = data);
-  }
-
+  
   initializeForm() {
     this.product = {
       Name: null,
@@ -37,8 +32,15 @@ export class ProductAddComponent implements OnInit {
     }
   }
 
-  saveProduct(form: NgForm) {
-    return this.apiService.registerProduct(this.product).subscribe((res: any) => console.log(res));
+  getproductCategory(){
+    this.apiService.getProductCategory().subscribe(data => {
+      this.productcat = data;
+    })
+  }
+  
+  saveProduct(form:NgForm){
+   this.product.ProductCategoryId = this.selectedproductcat;
+   return this.apiService.registerProduct(this.product).subscribe((res:any) => console.log(res));
   }
 
 }
