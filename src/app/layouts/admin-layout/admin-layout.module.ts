@@ -28,7 +28,11 @@ import { ProductAddComponent } from 'app/product/product/product-add/product-add
 import { OrderComponent } from 'app/order/order/order.component';
 import { OrderAddComponent } from 'app/order/order/order-add/order-add.component';
 import { OrderListComponent } from 'app/order/order/order-list/order-list.component';
-import { ProdcatComponent } from 'app/product/productcategory/prodcat/prodcat.component';
+
+import { ProdcatListComponent } from 'app/product/productcategory/prodcat-list/prodcat-list/prodcat-list.component';
+import { ProdcatComponent } from 'app/product/productcategory/prodcat.component';
+import { ProdcatAddComponent } from 'app/product/productcategory/prodcat-add/prodcat-add/prodcat-add.component';
+
 
 @NgModule({
   imports: [
@@ -64,6 +68,8 @@ import { ProdcatComponent } from 'app/product/productcategory/prodcat/prodcat.co
     OrderAddComponent,
     OrderListComponent,
     ProdcatComponent,
+    ProdcatListComponent,
+    ProdcatAddComponent
   ]
 })
 

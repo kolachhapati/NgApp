@@ -4,14 +4,13 @@ import { IProductCategoryModel } from 'app/product/product.model';
 import { ApiService } from 'app/shared/api.service';
 
 @Component({
-  selector: 'app-prodcat',
-  templateUrl: './prodcat.component.html',
-  styleUrls: ['./prodcat.component.css']
+  selector: 'prodcat-add',
+  templateUrl: './prodcat-add.component.html',
+  styleUrls: ['./prodcat-add.component.css']
 })
-export class ProdcatComponent implements OnInit {
+export class ProdcatAddComponent implements OnInit {
 
-  
-productCat: IProductCategoryModel;
+  productCat: IProductCategoryModel;
   constructor(private apiService:ApiService) { this.initializeForm() }
 
   ngOnInit(): void {
@@ -27,4 +26,5 @@ productCat: IProductCategoryModel;
       ProductCategoryId :null
     }
   }
+
 }

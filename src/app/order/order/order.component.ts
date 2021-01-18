@@ -15,14 +15,15 @@ export class OrderComponent implements OnInit {
   products: any = [];
   productCategories: any = [];
   orders: IOrderModel;
-  sales : ISalesModel;
+  sales: ISalesModel;
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   orderGroupId: any = null;
   grandTotal;
   Qty: number;
-  showButton:boolean = true;
+  showButton: boolean = true;
+  selectedProductCategory: number;
   selectedProduct: number;
   showOrders: boolean = false;
   isEditable = true;
@@ -44,17 +45,23 @@ export class OrderComponent implements OnInit {
       custname: ['', Validators.required],
       custemail: ['', Validators.required]
     });
-    this.getproducts();
+    this.getproductCategory();
+
+
   }
- 
+
   getproducts() {
     this.apiService.getProducts().subscribe(data => {
       this.products = data;
     })
   }
 
+  getproductbyId(e) {
+    this.apiService.getproductsbyId(e.value);
+  }
+
   getproductCategory() {
-    this.apiService.getProductCat().subscribe(data => {
+    this.apiService.getProductCategory().subscribe(data => {
       this.productCategories = data;
     })
   }
@@ -66,7 +73,7 @@ export class OrderComponent implements OnInit {
 
     this.orders.ProductId = this.selectedProduct;
     this.orders.Quantity = this.Qty;
-     this.orders.OrderId = 0;
+    this.orders.OrderId = 0;
     this.orders.OrderGroup = this.orderGroupId;
 
     return this.apiService.saveOrder(this.orders).subscribe((res: any) => {
@@ -77,30 +84,30 @@ export class OrderComponent implements OnInit {
   }
 
 
-  completeOrder(){
-    this.sales.Email =  this.secondFormGroup.controls['custemail'].value;
-    this.sales.Name =  this.secondFormGroup.controls['custname'].value;
-    this.sales.PhoneNumber =  this.secondFormGroup.controls['phnnumber'].value;
+  completeOrder() {
+    this.sales.Email = this.secondFormGroup.controls['custemail'].value;
+    this.sales.Name = this.secondFormGroup.controls['custname'].value;
+    this.sales.PhoneNumber = this.secondFormGroup.controls['phnnumber'].value;
     this.sales.OrderGroup = this.orderGroupId;
     this.sales.Total = this.grandTotal;
 
-    return this.apiService.completeOrder(this.sales).subscribe((res:any) => {
+    return this.apiService.completeOrder(this.sales).subscribe((res: any) => {
       // this.orderGroupId = null;
       // this.orderlist= null;
       this.showButton = false;
       alert("Sales is confirmed");
     });
-    
-   
+
+
   }
 
-  cancelOrder(){
+  cancelOrder() {
     this.orderGroupId = null;
-    this.orderlist= null;
+    this.orderlist = null;
     this.initializeEntity();
   }
 
-  initializeEntity(){
+  initializeEntity() {
     this.orders = {
       ProductId: null,
       OrderGroup: null,
@@ -109,10 +116,10 @@ export class OrderComponent implements OnInit {
     }
 
     this.sales = {
-      OrderGroup:null,
-      Total : null,
-      Name : null,
-      Email : null,
+      OrderGroup: null,
+      Total: null,
+      Name: null,
+      Email: null,
       PhoneNumber: null
     }
   }

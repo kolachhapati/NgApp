@@ -11,6 +11,7 @@ const serverUrl: string = 'https://localhost:44396/'
   providedIn: 'root'
 })
 export class ApiService {
+ 
 
 
 
@@ -34,6 +35,10 @@ export class ApiService {
     return this.http.get<IProductModel[]>(serverUrl + 'api/Product/Get');
   }
 
+  getproductsbyId(id : number) {
+    throw new Error('Method not implemented.');
+  }
+
   getProductCategory(): Observable<any> {
     return this.http.get<IProductCategoryModel[]>(serverUrl + 'api/Product/GetCat');
   }
@@ -42,9 +47,9 @@ export class ApiService {
     return this.http.post(serverUrl + 'api/Product/CreateProdCat', productCat);
   }
 
-  getProductCat(): Observable<IProductCategoryModel[]> {
-    return this.http.get<IProductCategoryModel[]>(serverUrl + 'api/Product/GetCat');
-  }
+  // getProductCat(): Observable<IProductCategoryModel[]> {
+  //   return this.http.get<IProductCategoryModel[]>(serverUrl + 'api/Product/GetCat');
+  // }
 
   // getLocation(id: any): Observable<LocationModel> {
   //   let parameter = new HttpParams().set("id", id.toString());
