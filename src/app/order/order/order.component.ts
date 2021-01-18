@@ -89,6 +89,7 @@ export class OrderComponent implements OnInit {
   cancelOrder(){
     this.orderGroupId = null;
     this.orderlist= null;
+    this.initializeEntity();
   }
 
   initializeEntity(){

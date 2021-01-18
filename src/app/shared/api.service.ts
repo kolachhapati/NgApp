@@ -4,38 +4,42 @@ import { IProductCategoryModel, IProductModel } from 'app/product/product.model'
 import { Observable } from 'rxjs';
 import { IOrderModel, ISalesModel } from 'app/order/order.model';
 
-const serverUrl:string = 'https://localhost:44396/'
+const serverUrl: string = 'https://localhost:44396/'
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
- 
-  
-  
-  constructor(private http: HttpClient) {
-    
-   }
 
-   saveOrder(orderData: IOrderModel) {
-    return this.http.post(serverUrl + 'api/Order/Create' , orderData);
+
+
+  constructor(private http: HttpClient) {
+
+  }
+
+  saveOrder(orderData: IOrderModel) {
+    return this.http.post(serverUrl + 'api/Order/Create', orderData);
   }
 
   registerProduct(productData: IProductModel) {
-     return this.http.post(serverUrl + 'api/Product/Create' , productData);
+    return this.http.post(serverUrl + 'api/Product/Create', productData);
   }
 
   completeOrder(salesData: ISalesModel) {
-    return this.http.post(serverUrl + 'api/Order/Complete' , salesData);
+    return this.http.post(serverUrl + 'api/Order/Complete', salesData);
   }
 
-  getProducts() :Observable<any> {
-     return this.http.get<IProductModel[]>(serverUrl +'api/Product/Get');
+  getProducts(): Observable<any> {
+    return this.http.get<IProductModel[]>(serverUrl + 'api/Product/Get');
   }
 
-  registerCategory(productCat:IProductCategoryModel) {
-    return this.http.post(serverUrl + 'api/Product/CreateProdCat' , productCat);
+  getProductCategory(): Observable<any> {
+    return this.http.get<IProductCategoryModel[]>(serverUrl + 'api/Product/GetCat');
+  }
+
+  registerCategory(productCat: IProductCategoryModel) {
+    return this.http.post(serverUrl + 'api/Product/CreateProdCat', productCat);
   }
 
   // getLocation(id: any): Observable<LocationModel> {

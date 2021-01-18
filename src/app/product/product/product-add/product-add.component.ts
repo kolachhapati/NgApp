@@ -10,6 +10,9 @@ import { NgForm } from '@angular/forms';
 })
 export class ProductAddComponent implements OnInit {
 
+
+  productcat: any = [];
+  selectedproductcat;
   constructor(private apiService:ApiService) { 
     this.initializeForm();
   }
@@ -17,7 +20,7 @@ export class ProductAddComponent implements OnInit {
   product:IProductModel
 
   ngOnInit(): void {
-
+    this.getproductCategory();
   }
 
   initializeForm() {
@@ -25,11 +28,20 @@ export class ProductAddComponent implements OnInit {
       Name : null,
       Description :null,
       ProductId :null,
-      Price : 0.00
+      Price : 0.00,
+      ProductCategoryId : null
     }
+  }
+
+
+  getproductCategory(){
+    this.apiService.getProductCategory().subscribe(data => {
+      this.productcat = data;
+    })
   }
   
   saveProduct(form:NgForm){
+   this.product.ProductCategoryId = this.selectedproductcat;
    return this.apiService.registerProduct(this.product).subscribe((res:any) => console.log(res));
   }
  
