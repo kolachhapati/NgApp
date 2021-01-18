@@ -38,18 +38,12 @@ export class ApiService {
     return this.http.get<IProductCategoryModel[]>(serverUrl + 'api/Product/GetCat');
   }
 
-<<<<<<< Updated upstream
   registerCategory(productCat: IProductCategoryModel) {
     return this.http.post(serverUrl + 'api/Product/CreateProdCat', productCat);
-=======
-  getProductCat() :Observable<IProductCategoryModel[]>{
-    return this.http.get<IProductCategoryModel[]>(serverUrl +'api/Product/GetCat');
   }
- 
 
-  registerCategory(productCat:IProductCategoryModel) {
-    return this.http.post(serverUrl + 'api/Product/CreateProdCat' , productCat);
->>>>>>> Stashed changes
+  getProductCat(): Observable<IProductCategoryModel[]> {
+    return this.http.get<IProductCategoryModel[]>(serverUrl + 'api/Product/GetCat');
   }
 
   // getLocation(id: any): Observable<LocationModel> {
