@@ -10,6 +10,17 @@
                     <form #productForm="ngForm" (ngSubmit)="saveProduct(productForm)" autocomplete="off">
                         <div class="row">
                             <div class="col-md-3">
+                                <mat-form-field>
+                                    <mat-select name="prodcat" [(ngModel)]="product.ProductCategoryId" placeholder="Category" required>
+                                        <mat-option *ngFor="let category of categories" [value]="category.ProductCategoryId">
+                                            {{ category.name }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <!-- <input matInput formControlName="selectedProduct" type="number"
+                                    placeholder="Quantity" required> -->
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3">
                                 <mat-form-field class="example-full-width">
                                     <input matInput placeholder="Product Name" [(ngModel)]="product.Name"
                                         name="prodName" #pname="ngModel">
@@ -31,7 +42,7 @@
                             </div>
                         </div>
                         <button mat-raised-button type="submit" class="btn btn-danger pull-right">Update
-                            </button>
+                        </button>
                         <div class="clearfix"></div>
                     </form>
                 </div>

@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrl: 'https://localhost:44396/api'
 };
+
+//ng build --prod --base-href /shopApp/

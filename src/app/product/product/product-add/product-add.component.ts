@@ -10,27 +10,35 @@ import { NgForm } from '@angular/forms';
 })
 export class ProductAddComponent implements OnInit {
 
-  constructor(private apiService:ApiService) { 
+
+  categories;
+
+  constructor(private apiService: ApiService) {
     this.initializeForm();
   }
 
-  product:IProductModel
+  product: IProductModel
 
   ngOnInit(): void {
+    this.getCategories();
+  }
 
+  getCategories() {
+    this.apiService.getCategories().subscribe(data =>  this.categories = data);
   }
 
   initializeForm() {
     this.product = {
-      Name : null,
-      Description :null,
-      ProductId :null,
-      Price : 0.00
+      Name: null,
+      Description: null,
+      ProductId: null,
+      Price: 0.00,
+      ProductCategoryId: 0
     }
   }
-  
-  saveProduct(form:NgForm){
-   return this.apiService.registerProduct(this.product).subscribe((res:any) => console.log(res));
+
+  saveProduct(form: NgForm) {
+    return this.apiService.registerProduct(this.product).subscribe((res: any) => console.log(res));
   }
- 
+
 }

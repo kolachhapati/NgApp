@@ -3,7 +3,7 @@ export interface IProductModel{
 	Name  : string
 	Price : number
 	Description : string
-    // Status : boolean
+    ProductCategoryId: number
 }
 
 
