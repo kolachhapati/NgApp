@@ -16,6 +16,19 @@
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 <mat-form-field>
+                                                    <mat-label>Product Category</mat-label>
+                                                    <mat-select formControlName="selectedProductCategory" required>
+                                                        <mat-option *ngFor="let category of productCategories"
+                                                            [value]="productCategories.productcategoryId">
+                                                            {{ category.name }}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                    <!-- <input matInput formControlName="selectedProduct" type="number"
+                                                        placeholder="Quantity" required> -->
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <mat-form-field>
                                                     <mat-label>Product</mat-label>
                                                     <mat-select formControlName="selectedProduct" required>
                                                         <mat-option *ngFor="let product of products"

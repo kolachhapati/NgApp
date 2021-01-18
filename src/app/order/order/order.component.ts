@@ -13,6 +13,7 @@ import { IProductModel } from 'app/product/product.model';
 export class OrderComponent implements OnInit {
   orderlist: any;
   products: any = [];
+  productCategories: any = [];
   orders: IOrderModel;
   sales : ISalesModel;
   isLinear = false;
@@ -35,6 +36,7 @@ export class OrderComponent implements OnInit {
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       selectedProduct: ['', Validators.required],
+      selectedProductCategory: ['', Validators.required],
       Qty: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
@@ -48,6 +50,12 @@ export class OrderComponent implements OnInit {
   getproducts() {
     this.apiService.getProducts().subscribe(data => {
       this.products = data;
+    })
+  }
+
+  getproductCategory() {
+    this.apiService.getProductCat().subscribe(data => {
+      this.productCategories = data;
     })
   }
 
