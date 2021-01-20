@@ -13,13 +13,6 @@ export const ROUTES: RouteInfo[] = [
     { path: '/productcat', title: 'Product Category',  icon:'info', class: '' },
     { path: '/product', title: 'Product',  icon:'info', class: '' },
     { path: '/order', title: 'Order',  icon:'info', class: '' },
-    
-    // { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },
-    // { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
-    // { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
-    // { path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
-    // { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
-    // { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
 ];
 
 @Component({
