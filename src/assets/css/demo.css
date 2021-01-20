@@ -15,6 +15,10 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+
+/* You can add global styles to this file, and also import other style files */
+/* @import '~ngx-toastr/toastr.css'; */
+
 .tim-typo{
   padding-left: 25%;
   margin-bottom: 40px;

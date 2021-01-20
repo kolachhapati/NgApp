@@ -4,8 +4,8 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title">Product</h4>
-                        <p class="card-category">Register Your Product</p>
+                        <h4 class="card-title">Order</h4>
+                        <p class="card-category">Place Your Order</p>
                     </div>
                     <div class="card-body">
                         <mat-horizontal-stepper linear #stepper>
@@ -150,7 +150,8 @@
                                 <p>You are now done.</p>
                                 <div>
                                     <button mat-button matStepperPrevious>Back</button>
-                                    <button mat-button (click)="stepper.reset()">Reset</button>
+                                    <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+                                    <button mat-button (click)="reload()">Reset</button>
                                 </div>
                             </mat-step>
                         </mat-horizontal-stepper>

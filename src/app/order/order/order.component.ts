@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from 'app/shared/api.service';
 import { IOrderModel, ISalesModel } from '../order.model';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { IProductModel } from 'app/product/product.model';
 
@@ -30,7 +31,7 @@ export class OrderComponent implements OnInit {
   headerlist: string[] = ["Product", "Quantity", "Price", "Amount"]
 
 
-  constructor(private _formBuilder: FormBuilder, private apiService: ApiService) {
+  constructor(private _formBuilder: FormBuilder, private apiService: ApiService,private toastr: ToastrService) {
     this.initializeEntity();
   }
 
@@ -46,18 +47,20 @@ export class OrderComponent implements OnInit {
       custemail: ['', Validators.required]
     });
     this.getproductCategory();
-
-
   }
 
-  getproducts() {
-    this.apiService.getProducts().subscribe(data => {
-      this.products = data;
-    })
+  reload(){
+    window.location.reload();
   }
+
+  // getproducts() {
+  //   this.apiService.getProducts().subscribe(data => {
+  //     this.products = data;
+  //   })
+  // }
 
   getproductbyId(e) {
-    this.apiService.getproductsbyId(e.value);
+    this.apiService.getproductsbyId(e.value).subscribe(data => this.products = data);
   }
 
   getproductCategory() {
@@ -95,16 +98,20 @@ export class OrderComponent implements OnInit {
       // this.orderGroupId = null;
       // this.orderlist= null;
       this.showButton = false;
-      alert("Sales is confirmed");
+      this.toastr.success("Sales is confirmed","Success");
+      // alert("Sales is confirmed");
     });
 
 
   }
 
   cancelOrder() {
+    
+    console.log(this.orderGroupId);
+    // this.firstFormGroup.controls['selectedProduct'].setValue(0);
     this.orderGroupId = null;
     this.orderlist = null;
-    this.initializeEntity();
+    this.reload();
   }
 
   initializeEntity() {
