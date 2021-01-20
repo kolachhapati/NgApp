@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit{
 
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  displayedColumns: string[] = ["Name", "Price", "Description","Actions"]
+  displayedColumns: string[] = ["Name","Category", "Price", "Description","Actions"]
 
   constructor(private apiService: ApiService) { }
 

@@ -3,7 +3,8 @@ export interface IProductModel{
 	Name  : string
 	Price : number
 	Description : string
-    ProductCategoryId: number
+	ProductCategoryId: number
+	Category:string
 }
 
 

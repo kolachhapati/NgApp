@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { ToastrModule } from 'ngx-toastr';
+ import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -37,9 +37,9 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     }),
     ToastrModule.forRoot({
-      timeOut: 2500,
-      positionClass: 'toast-top-right',
-      preventDuplicates: true
+      timeOut: 10000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
     })
   ],
   declarations: [

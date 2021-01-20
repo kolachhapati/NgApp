@@ -23,7 +23,12 @@ export class ProdcatListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(result);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-   });
+    });
+  }
+
+
+  onDelete(e) {
+    console.log(e.productCategoryId);
   }
 
   searchProd() {

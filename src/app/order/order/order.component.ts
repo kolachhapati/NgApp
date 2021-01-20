@@ -95,10 +95,8 @@ export class OrderComponent implements OnInit {
     this.sales.Total = this.grandTotal;
 
     return this.apiService.completeOrder(this.sales).subscribe((res: any) => {
-      // this.orderGroupId = null;
-      // this.orderlist= null;
       this.showButton = false;
-      this.toastr.success("Sales is confirmed","Success");
+       this.toastr.success("Sales is confirmed","Success");
       // alert("Sales is confirmed");
     });
 
