@@ -30,7 +30,7 @@ export class ProductListComponent implements OnInit{
   }
 
   onDelete(e){
-    console.log(e.productId);
+    this.apiService.delProduct(e.productId).subscribe((res:any) => console.log(res));
   }
 
   onEdit(e){

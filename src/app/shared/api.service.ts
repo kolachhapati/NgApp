@@ -17,6 +17,7 @@ const serverUrl: string = 'http://localhost:44336/'
 })
 export class ApiService {
 
+
   constructor(private http: HttpClient) { }
   saveOrder(orderData: IOrderModel) {
     return this.http.post(serverUrl + 'api/Order/Create', orderData);
@@ -34,6 +35,11 @@ export class ApiService {
     return this.http.get<IProductModel[]>(serverUrl + 'api/Product/Get');
   }
 
+  delProduct(productId: any) {
+    let parameter = new HttpParams().set("id", productId.toString());
+    return this.http.delete(serverUrl + 'api/Product/DelProduct', {params : parameter});
+  }
+
   getproductsbyId(id: number) {
     let parameter = new HttpParams().set("id", id.toString());
     return this.http.get<IProductModel[]>(serverUrl + 'api/Product/GetById',{ params : parameter });
@@ -41,6 +47,11 @@ export class ApiService {
 
   getProductCategory(): Observable<any> {
     return this.http.get<IProductCategoryModel[]>(serverUrl + 'api/Product/GetCat');
+  }
+
+  delProdCat(productCategoryId: any) {
+    let parameter = new HttpParams().set("id", productCategoryId.toString());
+    return this.http.delete(serverUrl + 'api/Product/DelProdCat',{params: parameter});
   }
 
   registerCategory(productCat: IProductCategoryModel) {

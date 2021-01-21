@@ -28,6 +28,7 @@ export class ProdcatListComponent implements OnInit {
 
   onDelete(e) {
     console.log(e.productCategoryId);
+    this.apiService.delProdCat(e.productCategoryId).subscribe((res:any) => console.log(res));
   }
 
   onEdit(e){
