@@ -26,8 +26,11 @@ export class ProdcatListComponent implements OnInit {
     });
   }
 
-
   onDelete(e) {
+    console.log(e.productCategoryId);
+  }
+
+  onEdit(e){
     console.log(e.productCategoryId);
   }
 

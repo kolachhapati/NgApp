@@ -97,14 +97,12 @@ export class OrderComponent implements OnInit {
     return this.apiService.completeOrder(this.sales).subscribe((res: any) => {
       this.showButton = false;
        this.toastr.success("Sales is confirmed","Success");
-      // alert("Sales is confirmed");
     });
 
 
   }
 
   cancelOrder() {
-    
     console.log(this.orderGroupId);
     // this.firstFormGroup.controls['selectedProduct'].setValue(0);
     this.orderGroupId = null;

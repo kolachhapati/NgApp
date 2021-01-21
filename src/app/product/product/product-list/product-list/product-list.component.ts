@@ -29,6 +29,14 @@ export class ProductListComponent implements OnInit{
     });
   }
 
+  onDelete(e){
+    console.log(e.productId);
+  }
+
+  onEdit(e){
+    console.log(e.productId);
+  }
+
   searchProd() {
     this.dataSource.filter = this.searchKey.trim().toLowerCase();
   }
