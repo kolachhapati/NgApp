@@ -24,8 +24,6 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ProductAddComponent } from 'app/product/product/product-add/product-add.component';
 import { OrderComponent } from 'app/order/order/order.component';
-import { OrderAddComponent } from 'app/order/order/order-add/order-add.component';
-import { OrderListComponent } from 'app/order/order/order-list/order-list.component';
 
 import { ProdcatListComponent } from 'app/product/productcategory/prodcat-list/prodcat-list/prodcat-list.component';
 import { ProdcatComponent } from 'app/product/productcategory/prodcat.component';
@@ -59,8 +57,6 @@ import { ProdcatAddComponent } from 'app/product/productcategory/prodcat-add/pro
     ProductListComponent,
     ProductAddComponent,
     OrderComponent,
-    OrderAddComponent,
-    OrderListComponent,
     ProdcatComponent,
     ProdcatListComponent,
     ProdcatAddComponent

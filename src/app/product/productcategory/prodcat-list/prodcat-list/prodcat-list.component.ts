@@ -19,6 +19,7 @@ export class ProdcatListComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
+    
     this.apiService.getProductCategory().subscribe(result => {
       this.dataSource = new MatTableDataSource(result);
       this.dataSource.sort = this.sort;
@@ -27,7 +28,6 @@ export class ProdcatListComponent implements OnInit {
   }
 
   onDelete(e) {
-    console.log(e.productCategoryId);
     this.apiService.delProdCat(e.productCategoryId).subscribe((res:any) => console.log(res));
   }
 

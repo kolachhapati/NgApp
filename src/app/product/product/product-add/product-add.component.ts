@@ -44,7 +44,6 @@ export class ProductAddComponent implements OnInit {
     this.product.ProductCategoryId = this.selectedproductcat;
     return this.apiService.registerProduct(this.product).subscribe(data => {
       if (data > 0) {
-        debugger;
         this.toastr.success("Product Added", "Success");
       }
     });
