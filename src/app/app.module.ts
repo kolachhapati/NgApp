@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
- import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';

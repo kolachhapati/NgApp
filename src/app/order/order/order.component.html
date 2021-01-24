@@ -14,9 +14,9 @@
                                     <ng-template matStepLabel>Create Order</ng-template>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-sm-3">
+                                            <div class="col-md-4">
                                                 <mat-form-field>
-                                                    <mat-label>Product Category</mat-label>
+                                                    <mat-label> Category</mat-label>
                                                     <mat-select formControlName="selectedProductCategory"
                                                         (selectionChange)="getproductbyId($event)" required>
                                                         <mat-option *ngFor="let category of productCategories"
@@ -26,7 +26,7 @@
                                                     </mat-select>
                                                 </mat-form-field>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-md-4">
                                                 <mat-form-field>
                                                     <mat-label>Product</mat-label>
                                                     <mat-select formControlName="selectedProduct" required>
@@ -37,19 +37,16 @@
                                                     </mat-select>
                                                 </mat-form-field>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-md-4">
                                                 <mat-form-field>
                                                     <mat-label>Quantity</mat-label>
                                                     <input matInput formControlName="Qty" placeholder="Quantity"
                                                         type="number" required>
                                                 </mat-form-field>
                                             </div>
-                                            &nbsp;
-                                            <button mat-raised-button color="primary" type="button" (click)="saveOrder()">Add
-                                            </button>
-                                            &nbsp;
-                                            <button mat-raised-button color="accent" type="button" 
-                                                (click)="cancelOrder()">Cancel
+                                            <br />
+                                            <button mat-raised-button color="primary" type="button"
+                                                (click)="saveOrder()">Add
                                             </button>
                                         </div>
                                     </div>
@@ -73,8 +70,11 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-
+                                        <button mat-raised-button color="warn" type="button"
+                                            (click)="cancelOrder()">Cancel
+                                        </button>
                                     </div>
+
                                     <div>
                                         <button mat-button matStepperNext>Next</button>
                                     </div>
@@ -106,17 +106,18 @@
                                         </div>
                                     </div>
                                     <div class="card-body row" *ngIf="showButton">
-                                        <div class="col-md-4">
+                                        <div class="col-sm-4">
                                             <button mat-raised-button color="primary" type="button"
                                                 class="btn-primary btn-sm" (click)="completeOrder()">Confirm Order
                                             </button>
-                                            &nbsp;
+                                        </div>
+                                        <div class="col-sm-4">
                                             <button mat-raised-button color="warn" type="button"
                                                 class="btn-danger btn-sm" (click)="cancelOrder()">Cancel Order
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="card-body" *ngIf="orderlist">
+                                    <div id="receipt" class="card-body" *ngIf="orderlist">
                                         <table class="table table-striped table-bordered">
                                             <thead class="thead-light">
                                                 <tr>
@@ -136,10 +137,18 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <button *ngIf="!showButton" mat-raised-button color="primary" type="button"
+                                        <!-- <button *ngIf="!showButton" mat-raised-button color="primary"
+                                            printSectionId="receipt" class="btn-primary btn-sm" ngxPrint>Print
+                                            Invoice</button> -->
+
+                                        <!-- <button *ngIf="!showButton" mat-raised-button color="primary" type="button"
                                             class="btn-primary btn-sm" (click)="completeOrder()">Print Invoice
-                                        </button>
+                                        </button> -->
                                     </div>
+                                    <br />
+
+                                    <button *ngIf="!showButton" mat-raised-button (click)="print()">Print
+                                        Invoice</button> <br />
                                     <div>
                                         <button mat-button matStepperPrevious>Back</button>
                                         <button mat-button matStepperNext>Next</button>
@@ -161,5 +170,7 @@
                 </div>
             </div>
         </div>
+
+
     </div>
 </div>

@@ -12,7 +12,8 @@
                             <div class="col-md-4">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Product Category</mat-label>
-                                    <mat-select [(ngModel)]="selectedproductcat" name="prodCat" #pcat="ngModel" required>
+                                    <mat-select [(ngModel)]="selectedproductcat" name="prodCat" #pcat="ngModel"
+                                        required>
                                         <mat-option *ngFor="let cat of productcat" [value]="cat.productCategoryId">
                                             {{ cat.name }}
                                         </mat-option>
@@ -31,7 +32,7 @@
                                     placeholder="Quantity" required> 
                                 </mat-form-field>
                             </div> -->
-                            
+
                             <div class="col-md-3">
                                 <mat-form-field class="example-full-width">
                                     <input matInput placeholder="Product Name" [(ngModel)]="product.Name"
@@ -62,3 +63,16 @@
         </div>
     </div>
 </div>
+<div id="demo">
+    <table border="1">
+        <tr>
+            <td>Row 1, Column 1</td>
+            <td>Row 1, Column 2</td>
+        </tr>
+        <tr>
+            <td>Row 2, Column 1</td>
+            <td>Row 2, Column 2</td>
+        </tr>
+    </table>
+</div><br>
+<button printSectionId="demo" ngxPrint>print</button>

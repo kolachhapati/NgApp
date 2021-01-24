@@ -93,13 +93,16 @@ export class OrderComponent implements OnInit {
     this.sales.PhoneNumber = this.secondFormGroup.controls['phnnumber'].value;
     this.sales.OrderGroup = this.orderGroupId;
     this.sales.Total = this.grandTotal;
+    
+    if(this.sales.PhoneNumber == ""){
+      this.toastr.warning("Customer Contact Number is required","Success");
+      return;
+    }
 
     return this.apiService.completeOrder(this.sales).subscribe((res: any) => {
       this.showButton = false;
        this.toastr.success("Sales is confirmed","Success");
     });
-
-
   }
 
   cancelOrder() {
@@ -109,6 +112,18 @@ export class OrderComponent implements OnInit {
     this.orderlist = null;
     this.reload();
   }
+
+  print(): void {
+    let printContents, popupWin;
+    printContents = document.getElementById('receipt').innerHTML;
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    popupWin.document.open();
+    popupWin.document.write(`
+    <body onload="window.print();window.close()">${printContents}</body>
+      `
+    );
+    popupWin.document.close();
+}
 
   initializeEntity() {
     this.orders = {
