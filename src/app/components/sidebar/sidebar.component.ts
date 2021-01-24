@@ -13,6 +13,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/productcat', title: 'Product Category',  icon:'category', class: '' },
     { path: '/product', title: 'Product',  icon:'shopping_cart', class: '' },
     { path: '/order', title: 'Order',  icon:'request_quote', class: '' },
+    { path: '/order-history', title: 'Order Records',  icon:'receipt_long', class: '' },
 ];
 
 @Component({
