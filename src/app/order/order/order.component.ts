@@ -31,7 +31,7 @@ export class OrderComponent implements OnInit {
   headerlist: string[] = ["Product", "Quantity", "Price", "Amount"]
 
 
-  constructor(private _formBuilder: FormBuilder, private apiService: ApiService,private toastr: ToastrService) {
+  constructor(private _formBuilder: FormBuilder, private apiService: ApiService, private toastr: ToastrService) {
     this.initializeEntity();
   }
 
@@ -49,7 +49,7 @@ export class OrderComponent implements OnInit {
     this.getproductCategory();
   }
 
-  reload(){
+  reload() {
     window.location.reload();
   }
 
@@ -93,15 +93,15 @@ export class OrderComponent implements OnInit {
     this.sales.PhoneNumber = this.secondFormGroup.controls['phnnumber'].value;
     this.sales.OrderGroup = this.orderGroupId;
     this.sales.Total = this.grandTotal;
-    
-    if(this.sales.PhoneNumber == ""){
-      this.toastr.warning("Customer Contact Number is required","Success");
+
+    if (this.sales.PhoneNumber == "") {
+      this.toastr.warning("Customer Contact Number is required", "Success");
       return;
     }
 
     return this.apiService.completeOrder(this.sales).subscribe((res: any) => {
-      this.showButton = false;
-       this.toastr.success("Sales is confirmed","Success");
+      // this.showButton = false;
+      this.toastr.success("Sales is confirmed", "Success");
     });
   }
 
@@ -115,15 +115,23 @@ export class OrderComponent implements OnInit {
 
   print(): void {
     let printContents, popupWin;
+
     printContents = document.getElementById('receipt').innerHTML;
     popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
     popupWin.document.open();
     popupWin.document.write(`
-    <body onload="window.print();window.close()">${printContents}</body>
-      `
+          <html>
+            <head>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+            </head>
+            <style>
+
+            </style>
+        <body onload="window.print();window.close()">${printContents}</body>
+          </html>`
     );
     popupWin.document.close();
-}
+  }
 
   initializeEntity() {
     this.orders = {
