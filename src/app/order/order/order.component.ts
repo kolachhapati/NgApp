@@ -100,7 +100,7 @@ export class OrderComponent implements OnInit {
     }
 
     return this.apiService.completeOrder(this.sales).subscribe((res: any) => {
-      // this.showButton = false;
+       this.showButton = false;
       this.toastr.success("Sales is confirmed", "Success");
     });
   }
