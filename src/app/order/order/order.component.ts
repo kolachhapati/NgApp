@@ -26,6 +26,7 @@ export class OrderComponent implements OnInit {
   showButton: boolean = true;
   selectedProductCategory: number;
   selectedProduct: number;
+  invoiceNumber: string = "N/A";
   showOrders: boolean = false;
   isEditable = true;
   headerlist: string[] = ["Product", "Quantity", "Price", "Amount"]
@@ -100,9 +101,17 @@ export class OrderComponent implements OnInit {
     }
 
     return this.apiService.completeOrder(this.sales).subscribe((res: any) => {
-       this.showButton = false;
+      debugger;
+      console.log(res);
+      this.invoiceNumber = res;
+      this.showButton = false;
       this.toastr.success("Sales is confirmed", "Success");
-    });
+    },
+    (err:any) =>{
+      debugger;
+      console.log(err)
+     }
+    );
   }
 
   cancelOrder() {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { IProductCategoryModel } from 'app/product/product.model';
 import { ApiService } from 'app/shared/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'prodcat-add',
@@ -11,19 +12,23 @@ import { ApiService } from 'app/shared/api.service';
 export class ProdcatAddComponent implements OnInit {
 
   productCat: IProductCategoryModel;
-  constructor(private apiService:ApiService) { this.initializeForm() }
+  constructor(private apiService: ApiService, private toastr: ToastrService) { this.initializeForm() }
 
   ngOnInit(): void {
   }
-  
-  saveCategory(form:NgForm){
-    return this.apiService.registerCategory(this.productCat).subscribe((res:any) => console.log(res));
-  }
+
+  saveCategory(form: NgForm) {
+    return this.apiService.registerCategory(this.productCat).subscribe((res: any) => {
+      if (res > 0)
+        this.toastr.success("Category is Saved", "Success")
+    },
+      (err: any) => console.log(err))
+  };
 
   initializeForm() {
     this.productCat = {
-      Name : null,
-      ProductCategoryId :null
+      Name: null,
+      ProductCategoryId: null
     }
   }
 

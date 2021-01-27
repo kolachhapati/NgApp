@@ -27,6 +27,10 @@ export class ApiService {
     return this.http.post(serverUrl + 'api/Product/Create', productData);
   }
 
+  registerCategory(productCat: IProductCategoryModel) {
+    return this.http.post(serverUrl + 'api/Product/CreateProdCat', productCat);
+  }
+
   completeOrder(salesData: ISalesModel) {
     return this.http.post(serverUrl + 'api/Order/Complete', salesData);
   }
@@ -54,9 +58,7 @@ export class ApiService {
     return this.http.delete(serverUrl + 'api/Product/DelProdCat',{params: parameter});
   }
 
-  registerCategory(productCat: IProductCategoryModel) {
-    return this.http.post(serverUrl + 'api/Product/CreateProdCat', productCat);
-  }
+  
 
 
 
