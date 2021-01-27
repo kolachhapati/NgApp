@@ -26,7 +26,7 @@ export class OrderComponent implements OnInit {
   showButton: boolean = true;
   selectedProductCategory: number;
   selectedProduct: number;
-  invoiceNumber: string = "N/A";
+  invoiceNumber: string;
   showOrders: boolean = false;
   isEditable = true;
   headerlist: string[] = ["Product", "Quantity", "Price", "Amount"]
@@ -122,7 +122,7 @@ export class OrderComponent implements OnInit {
     this.reload();
   }
 
-  print(): void {
+  printInvoice(): void {
     let printContents, popupWin;
 
     printContents = document.getElementById('receipt').innerHTML;
@@ -137,6 +137,24 @@ export class OrderComponent implements OnInit {
 
             </style>
         <body onload="window.print();window.close()">${printContents}</body>
+          </html>`
+    );
+    popupWin.document.close();
+  }
+
+  invoiceNumPrint(){
+    let  popupWin;
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    popupWin.document.open();
+    popupWin.document.write(`
+          <html>
+            <head>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+            </head>
+            <style>
+
+            </style>
+        <body onload="window.print();window.close()">${this.invoiceNumber}</body>
           </html>`
     );
     popupWin.document.close();
