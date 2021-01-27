@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./prodcat-add.component.css']
 })
 export class ProdcatAddComponent implements OnInit {
-
+  booleanCondition :boolean =  false;
   productCat: IProductCategoryModel;
   constructor(private apiService: ApiService, private toastr: ToastrService) { this.initializeForm() }
 
@@ -18,9 +18,13 @@ export class ProdcatAddComponent implements OnInit {
   }
 
   saveCategory(form: NgForm) {
+    this.booleanCondition = !this.booleanCondition;
     return this.apiService.registerCategory(this.productCat).subscribe((res: any) => {
-      if (res > 0)
-        this.toastr.success("Category is Saved", "Success")
+      if (res > 0){
+        this.toastr.success("Category is Saved", "Success");
+        this.booleanCondition = !this.booleanCondition;
+        this.initializeForm();
+      }
     },
       (err: any) => console.log(err))
   };

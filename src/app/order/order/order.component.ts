@@ -101,14 +101,12 @@ export class OrderComponent implements OnInit {
     }
 
     return this.apiService.completeOrder(this.sales).subscribe((res: any) => {
-      debugger;
       console.log(res);
       this.invoiceNumber = res;
       this.showButton = false;
       this.toastr.success("Sales is confirmed", "Success");
     },
     (err:any) =>{
-      debugger;
       console.log(err)
      }
     );

@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductAddComponent implements OnInit {
   categories;
   productcat: any = [];
+  booleanCondition: boolean = false;
   selectedproductcat;
   constructor(private apiService: ApiService, private toastr: ToastrService) {
     this.initializeForm();
@@ -41,10 +42,13 @@ export class ProductAddComponent implements OnInit {
   }
 
   saveProduct(form: NgForm) {
+    this.booleanCondition = !this.booleanCondition;
     this.product.ProductCategoryId = this.selectedproductcat;
     return this.apiService.registerProduct(this.product).subscribe(data => {
       if (data > 0) {
         this.toastr.success("Product Added", "Success");
+        this.booleanCondition = !this.booleanCondition;
+        this.initializeForm();
       }
     });
   }
