@@ -16,6 +16,7 @@ const serverUrl: string = 'http://localhost:44336/'
   providedIn: 'root'
 })
 export class ApiService {
+  
 
 
   constructor(private http: HttpClient) { }
@@ -56,6 +57,10 @@ export class ApiService {
   delProdCat(productCategoryId: any) {
     let parameter = new HttpParams().set("id", productCategoryId.toString());
     return this.http.delete(serverUrl + 'api/Product/DelProdCat',{params: parameter});
+  }
+
+  getOrders():Observable<any> {
+    return this.http.get<ISalesModel[]>(serverUrl + 'api/Order/GetOrderList');
   }
 
   
