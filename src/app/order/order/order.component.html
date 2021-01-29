@@ -81,20 +81,21 @@
                                 </form>
                             </mat-step>
                             <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
-                                <form [formGroup]="secondFormGroup">
+                                <form [formGroup]="secondFormGroup" autocomplete="off">
                                     <ng-template matStepLabel>Check out</ng-template>
                                     <mat-label>Customer Details</mat-label>
                                     <div class="card-body row">
                                         <div class="col-md-4">
                                             <mat-form-field>
-                                                <input matInput formControlName="phnnumber"
-                                                    placeholder="Customer contact number">
+                                                <input matInput formControlName="phnnumber" placeholder="Contact Number"
+                                                    required>
                                             </mat-form-field>
                                         </div>
                                         <div class="col-md-4">
                                             <mat-form-field>
                                                 <mat-label>Customer Name</mat-label>
-                                                <input matInput formControlName="custname" placeholder="Customer Name">
+                                                <input matInput formControlName="custname" placeholder="Customer Name"
+                                                    required>
                                             </mat-form-field>
                                         </div>
                                         <div class="col-md-4">
@@ -102,6 +103,17 @@
                                                 <mat-label>Customer Email</mat-label>
                                                 <input matInput formControlName="custemail"
                                                     placeholder="Customer Email">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-md-4">
+                                            <mat-form-field>
+                                                <mat-label>Pick Up Date</mat-label>
+                                                <input matInput [matDatepicker]="picker" placeholder="Pickup Date"
+                                                    formControlName="pkupDate">
+                                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -118,9 +130,32 @@
                                         </div>
                                     </div>
                                     <div id="receipt" class="card-body" *ngIf="orderlist">
-                                        <span class="text-center" *ngIf="invoiceNumber">
+                                        <div *ngIf="invoiceNumber">
+                                            <div class="row contacts">
+                                                <div class="col company-details">
+                                                    <h4 class="name">
+                                                        Ardross Dry Cleaners
+                                                    </h4>
+                                                    <div>19 Kearns Cres</div>
+                                                    <div>93648392</div>
+                                                    <div>ABN#32237264553</div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row contacts">
+                                                <div class="col invoice-to">
+                                                    <div class="text-gray-light">INVOICE TO:</div>
+                                                    <h4 class="to">{{ customerName }}</h4>
+                                                </div>
+                                                <div class="col invoice-details">
+                                                    <h4>{{ invoiceNumber }}</h4>
+                                                    <div class="date">Due: {{ pickupDetail }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <span class="text-center" *ngIf="invoiceNumber">
                                             <h4> Invoice Number :{{ invoiceNumber }}</h4>
-                                        </span>
+                                        </span> -->
                                         <table class="table table-striped table-bordered">
                                             <thead class="thead-light">
                                                 <tr>
@@ -170,7 +205,5 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>

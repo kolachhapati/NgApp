@@ -21,6 +21,8 @@ export class OrderComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   orderGroupId: any = null;
+  customerName : string;
+  pickupDetail: string;
   grandTotal;
   Qty: number;
   showButton: boolean = true;
@@ -45,7 +47,8 @@ export class OrderComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       phnnumber: ['', Validators.required],
       custname: ['', Validators.required],
-      custemail: ['', Validators.required]
+      custemail: ['', Validators.required],
+      pkupDate : ['', Validators.required]
     });
     this.getproductCategory();
   }
@@ -91,6 +94,7 @@ export class OrderComponent implements OnInit {
   completeOrder() {
     this.sales.Email = this.secondFormGroup.controls['custemail'].value;
     this.sales.Name = this.secondFormGroup.controls['custname'].value;
+    this.sales.PickUpDate = this.secondFormGroup.get('pkupDate').value;
     this.sales.PhoneNumber = this.secondFormGroup.controls['phnnumber'].value;
     this.sales.OrderGroup = this.orderGroupId;
     this.sales.Total = this.grandTotal;
@@ -99,10 +103,16 @@ export class OrderComponent implements OnInit {
       this.toastr.warning("Customer Contact Number is required", "Success");
       return;
     }
+    if (this.sales.PickUpDate == "") {
+      this.toastr.warning("Pick Up Date is required", "Success");
+      return;
+    }
 
     return this.apiService.completeOrder(this.sales).subscribe((res: any) => {
-      console.log(res);
-      this.invoiceNumber = res;
+      this.customerName = res.CustomerName;
+      this.pickupDetail = res.PickUpDetails;
+      this.invoiceNumber = res.DocketNumber;
+      this.Qty = res.Qty;
       this.showButton = false;
       this.toastr.success("Sales is confirmed", "Success");
     },
@@ -152,7 +162,7 @@ export class OrderComponent implements OnInit {
             <style>
 
             </style>
-        <body onload="window.print();window.close()">${this.invoiceNumber}</body>
+        <body onload="window.print();window.close()">${this.pickupDetail + " " + this.Qty + " Item(s)"}<br>${this.invoiceNumber}</body>
           </html>`
     );
     popupWin.document.close();
@@ -171,7 +181,9 @@ export class OrderComponent implements OnInit {
       Total: null,
       Name: null,
       Email: null,
-      PhoneNumber: null
+      PhoneNumber: null,
+      PickUpDate: null,
+      Qty:null
     }
   }
 

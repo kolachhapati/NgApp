@@ -10,4 +10,6 @@ export interface ISalesModel{
     Email : string
     OrderGroup : string
     Total : number
+    PickUpDate: any
+    Qty: number
 }

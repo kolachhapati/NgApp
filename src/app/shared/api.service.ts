@@ -7,7 +7,7 @@ import { IOrderModel, ISalesModel } from 'app/order/order.model';
 import { environment } from 'environments/environment.prod';
 
 
-//const serverUrl: string = 'https://localhost:44396/'
+//const serverUrl: string = 'http://localhost:8080/'
 const serverUrl: string = 'http://localhost:44336/'
 
 
