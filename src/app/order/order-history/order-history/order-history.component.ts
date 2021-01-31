@@ -18,7 +18,7 @@ export class OrderHistoryComponent implements OnInit {
 
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  displayedColumns: string[] = ["Name","OrderGroup", "Total", "PhoneNumber","Actions"]
+  displayedColumns: string[] = ["Name", "Total", "PhoneNumber","Actions"]
   constructor(private apiService:ApiService) { }
 
   ngOnInit(): void {
